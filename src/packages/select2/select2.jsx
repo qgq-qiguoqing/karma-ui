@@ -70,7 +70,8 @@ export default {
     },
     nearby: Boolean,
     footer: [Function, Array, Object, String, Number],
-    checkable: Function
+    checkable: Function,
+    disabled: Boolean,
   },
   data() {
     let arr = []
@@ -164,7 +165,8 @@ export default {
           placeholder: this.dataValue.length ? "" : this.placeholder,
           block: true,
           simple: this.simple,
-          noStyle: this.noStyle
+          noStyle: this.noStyle,
+          disabled: this.disabled
         }
         // on: {
         //   focus: e => {
@@ -220,7 +222,7 @@ export default {
           block: true,
           value: this.searchText,
           simple: this.simple,
-          autofocus: true
+          autofocus: true,
           // active: this.visible
         },
         ref: "searchInput",
@@ -594,6 +596,9 @@ export default {
       on: {
         click: e => {
           // this.$refs.boxInput.focus()
+          if(this.disabled){
+            return;
+          }
           if (this.visible) {
             this.hideLayer()
           } else {
