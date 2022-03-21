@@ -177,7 +177,7 @@ export default {
       return <k-input {...p} >{this.hasIcon && this.rIcon()}</k-input>
     },
     rIcon() {
-      if(this.clearable && this.dataValue.length) {
+      if(this.clearable && this.dataValue.length&& !this.disabled) {
         return (
           <span
             class="k-select__icon__wrapper"
@@ -336,7 +336,7 @@ export default {
           return (
             <div class="k-select2-checked-item">
               <span class="k-select2-checked-name">{item[textField]}</span>
-              <k-icon
+             {this.disabled?'': <k-icon
                 name="k-icon-close"
                 class="k-select2-checked-del"
                 onClick={e => {
@@ -347,7 +347,7 @@ export default {
                   this.$emit('toggle', this.dataValue)
                   e.stopPropagation()
                 }}
-              ></k-icon>
+              ></k-icon>}
             </div>
           )
         })
